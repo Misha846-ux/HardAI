@@ -1,0 +1,8 @@
+﻿  Main.cpp
+C:\Users\micha\source\repos\HardAI\HardAI\Neuron.h(71,14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  (compiling source file 'Main.cpp')
+  
+C:\Users\micha\source\repos\HardAI\HardAI\Viewer.h(56,10): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'Main.cpp')
+  
+  HardAI.vcxproj -> C:\Users\micha\source\repos\HardAI\x64\Debug\HardAI.exe
