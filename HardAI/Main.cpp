@@ -3,6 +3,7 @@
 #include<vector>
 #include<algorithm>
 #include"Viewer.h"
+#include"Artist.h"
 using namespace std;
 
 int main() {
@@ -102,27 +103,21 @@ int main() {
 		vector<double> {1,1,1}
 	};
 
-	Viewer test;
-	//test.AITraining(digits, numbers);
-    for (auto& obj : digits) {
-        cout << test.AIAnswer(obj) << endl;
+	Artrist test;
+    //test.AITraining(digits, numbers);
+    auto cell = test.AIAnswer(9);
+    for (auto& obj : cell) {
+        for (auto& obj2 : obj) {
+            if (obj2 == 0) {
+                cout << ' ' << ' ';
+            }
+            else {
+                cout << obj2 << ' ';
+            }
+
+        }
+        cout << endl;
     }
 	
-	/*int a = 30;
-	int b = 40;
-
-	ofstream in("test.bin", ios::binary);
-	in.write(reinterpret_cast<char*>(&a), sizeof(a));
-	in.write(reinterpret_cast<char*>(&b), sizeof(b));
-	in.close();
-	
-	int c;
-	int d;
-	
-	ifstream on("test.bin", ios::binary);
-	on.read(reinterpret_cast<char*>(&c), sizeof(c));
-	on.read(reinterpret_cast<char*>(&d), sizeof(d));
-	on.close();
-	cout << c << ' ' << d;*/
 	return 0;
 }

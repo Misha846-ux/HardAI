@@ -64,7 +64,7 @@ public:
 		while (score < 1000000) {
 			score++;
 			if (score % 100000 == 0) {
-				cout << "I'm working: " << score / 100000 << endl;
+				cout << "Viewer working: " << score / 100000 << endl;
 			}
 			for (int i = 0; i < numbers.size(); i++) {
 				vector<double> idealOut(numbers.size());

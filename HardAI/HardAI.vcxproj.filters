@@ -41,5 +41,8 @@
     <ClInclude Include="Viewer.h">
       <Filter>Header Files\AI%27s</Filter>
     </ClInclude>
+    <ClInclude Include="Artist.h">
+      <Filter>Header Files\AI%27s</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
