@@ -23,7 +23,7 @@ private:
 	}
 public:
 	Viewer() {
-		this->_smoothing = 0.01;
+		this->_smoothing = 0.1;
 		this->_file = NeuronSaver("viewerData.bin");
 
 		this->_nerons.push_back(Neuron(15, 12));
@@ -33,6 +33,9 @@ public:
 		for (auto& obj : this->_nerons) {
 			this->_file.AddNeuron(obj);
 		}
+		/*for (auto& obj : this->_nerons) {
+			obj.Initialize();
+		}*/
 
 		this->_file.Read();
 		
@@ -53,14 +56,43 @@ public:
 				number = i;
 			}
 		}
-		return max;
+		return number;
 	}
 
 	void AITraining(vector<vector<vector<double>>>& pictures, vector<double>& numbers) {
-		vector<vector<double>> input(pictures.size());
-		for (int i = 0; i < input.size(); i++) {
-			input[i] = this->NormalasingInput(pictures[i]);
+		long long score = 0;
+		while (score < 1000000) {
+			score++;
+			if (score % 100000 == 0) {
+				cout << "I'm working: " << score / 100000 << endl;
+			}
+			for (int i = 0; i < numbers.size(); i++) {
+				vector<double> idealOut(numbers.size());
+				for (int j = 0; j < idealOut.size(); j++) {
+					if (j == i) {
+						idealOut[j] = 1;
+					}
+					else {
+						idealOut[j] = 0;
+					}
+				}
+
+				this->AIAnswer(pictures[i]);
+
+				this->_nerons[2].OutputErrorCalc(idealOut);
+				this->_nerons[1].OtherErrorCalc(this->_nerons[2]);
+				this->_nerons[0].OtherErrorCalc(this->_nerons[1]);
+
+				this->_nerons[2].UpdateNeuron(this->_smoothing);
+				this->_nerons[1].UpdateNeuron(this->_smoothing);
+				this->_nerons[0].UpdateNeuron(this->_smoothing);
+			}
 		}
+		this->_file.Save();
+	}
+
+	~Viewer() {
+		this->_file.Save();
 	}
 	
 };

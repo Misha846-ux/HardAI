@@ -24,9 +24,9 @@ public:
 	vector<double> NeuronAnswer(vector<double> input) {
 		this->_input = input;
 		for (int i = 0; i < this->_weights.size(); i++) {
-			double cell;
+			double cell = 0;
 			for (int j = 0; j < this->_weights[i].size(); j++) {
-				cell = input[j] * this->_weights[i][j];
+				cell += input[j] * this->_weights[i][j];
 			}
 			cell += this->_bias[i];
 			this->_output[i] = sigmoid(cell);
@@ -50,7 +50,7 @@ public:
 		}
 	}
 
-	void UpdateNeuron(int learningRate) {
+	void UpdateNeuron(double learningRate) {
 		for (int i = 0; i < this->_weights.size(); i++) {
 			for (int j = 0; j < this->_weights[i].size(); j++) {
 				this->_weights[i][j] += learningRate * this->_error[i] * this->_input[j];
